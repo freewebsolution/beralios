@@ -2,6 +2,7 @@ import React from "react";
 import Posts from "../posts/Posts";
 import Layout from "./Layout";
 
+
 const Home = () => {
   return (
     <Layout>

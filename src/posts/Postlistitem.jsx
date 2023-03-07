@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PostMeta from './PostMeta';
-import PostDetail from './PostDetail';
-
 
 function Postlistitem({ post }) {
   const excerpt = post.excerpt.rendered.slice(0, 50);

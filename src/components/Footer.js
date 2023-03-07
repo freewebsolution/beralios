@@ -6,7 +6,7 @@ const Footer = () => {
     const date = new Date();
     const [siteName, setSiteName] = useState('');
     useEffect(() => {
-        fetch('http://wp_react.test/wp-json')
+        fetch('http://reactwp.test/wp-json')
           .then(response => response.json())
           .then(data => {
             const name = data.name;

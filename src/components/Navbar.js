@@ -7,19 +7,16 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchMenuItems = async () => {
-        const menus = await menuService.getAll();
-        if (menus && menus.length > 0 && menus[0].items && menus[0].items.length > 0) {
-          const menuItems = menus[0].items.map(item => ({
-            id: item.ID,
-            title: item.title,
-            url: item.url
-          }));
-          setMenuItems(menuItems);
-        } else {
-          setMenuItems([]);
-        }
-      };
-     
+      const menu = await menuService.getByName('primary');
+      const menuItems = menu.items.map((item) => ({
+        id: item.ID,
+        title: item.title,
+        slug: item.slug,
+        url: item.url,
+      }));
+      setMenuItems(menuItems);
+    };
+
     fetchMenuItems();
   }, []);
 
@@ -44,13 +41,18 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav ms-auto py-4 py-lg-0">
             {menuItems && (
-              <ul>
+              <>
                 {menuItems.map((menuItem) => (
-                  <li key={menuItem.id}>
-                    <a href={menuItem.url}>{menuItem.title}</a>
+                  <li className="nav-item" key={menuItem.id}>
+                    <Link
+                      to={menuItem.url}
+                      className="nav-link px-lg-3 py-3 py-lg-4"
+                    >
+                      {menuItem.title}
+                    </Link>
                   </li>
                 ))}
-              </ul>
+              </>
             )}
           </ul>
         </div>
