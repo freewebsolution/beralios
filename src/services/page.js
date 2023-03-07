@@ -12,7 +12,16 @@ const getAll = () => {
 const getId = (id) => {
     const request = axios.get(`${baseUrl}/${id}`)
     return request.then(response => response.data)
- }
- 
- 
- export default { getAll,getId}
+}
+
+const getBySlug = (slug) => {
+    const request = axios.get(`${baseUrl}?slug=${slug}&_embed`);
+    return request.then(response => response.data[0]);
+};
+
+
+export default {
+    getAll,
+    getId,
+    getBySlug
+}

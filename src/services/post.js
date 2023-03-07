@@ -9,9 +9,12 @@ const getAll = () => {
 }
 
 const getId = (id) => {
-   const request = axios.get(`${baseUrl}/${id}`)
-   return request.then(response => response.data)
+    const request = axios.get(`${baseUrl}/${id}?_embed`)
+    return request.then(response => response.data)
 }
 
 
-export default { getAll,getId}
+export default {
+    getAll,
+    getId
+}
